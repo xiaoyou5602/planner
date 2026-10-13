@@ -16,10 +16,9 @@
 
 <img src="screenshots/home.png" width="200" alt="首页" />
 <img src="screenshots/schedule.png" width="200" alt="课表" />
-<img src="screenshots/course.png" width="200" alt="添加课程" />
-<img src="screenshots/import.png" width="200" alt="导入课表" />
+<img src="screenshots/me.png" width="200" alt="我的" />
 
-<sub>截图里的课程、名字、宿舍都是演示数据</sub>
+<sub>截图里的课程和名字都是演示数据</sub>
 
 </div>
 
