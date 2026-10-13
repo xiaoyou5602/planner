@@ -12,12 +12,6 @@
 ![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
 ![本地优先](https://img.shields.io/badge/数据-只存本机-F5C542)
 
-<br/>
-
-<img src="screenshots/home-schedule.png" width="560" alt="首页和课表" />
-
-<sub>截图里的课程和名字都是演示数据</sub>
-
 </div>
 
 ---
