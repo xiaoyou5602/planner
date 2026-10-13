@@ -14,9 +14,7 @@
 
 <br/>
 
-<img src="screenshots/home.png" width="200" alt="首页" />
-<img src="screenshots/schedule.png" width="200" alt="课表" />
-<img src="screenshots/me.png" width="200" alt="我的" />
+<img src="screenshots/home-schedule.png" width="560" alt="首页和课表" />
 
 <sub>截图里的课程和名字都是演示数据</sub>
 

@@ -460,7 +460,8 @@ textarea::placeholder {
   z-index: 41;
   max-height: calc(100% - var(--sat) - 24px);
   overflow-y: auto;
-  transform: translateY(110%);
+  /* 收起时连阴影一起推出屏幕（阴影往上 10px + 模糊 30px）；按 110% 推的话矮弹层的阴影会在屏幕底部留一道灰 */
+  transform: translateY(calc(100% + 48px));
   transition: transform 0.42s var(--ease-push);
   background: var(--paper);
   border-radius: 28px 28px 0 0;
