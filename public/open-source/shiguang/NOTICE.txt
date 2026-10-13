@@ -1,0 +1,5 @@
+拾光课程表适配仓库（shiguang_warehouse）
+上游：https://github.com/XingHeYuZhuan/shiguang_warehouse
+版本：174396aca3edaa0d2df72a55d28a93a2e71c8272
+提交时间：2026-10-10T18:16:37+08:00
+许可证：MIT；各适配器维护者信息保存在应用内目录及 catalog。

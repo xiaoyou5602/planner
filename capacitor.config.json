@@ -1,0 +1,16 @@
+{
+  "appId": "com.toge.campus",
+  "appName": "Planner",
+  "webDir": "dist",
+  "backgroundColor": "#fffefb",
+  "android": {
+    "minWebViewVersion": 111
+  },
+  "plugins": {
+    "SystemBars": {
+      "insetsHandling": "css",
+      "initialViewportFitValueHint": "cover",
+      "style": "LIGHT"
+    }
+  }
+}

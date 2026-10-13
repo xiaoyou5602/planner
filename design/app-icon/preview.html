@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>校园后勤图标</title>
+<style>
+  :root { --ink:#2e3a5c; --ink-2:#6b7593; --paper:#ffffff; --bg:#f3f6f9; --line:#e2e8ef; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family: Inter,'PingFang SC','Microsoft YaHei',system-ui,sans-serif; padding:32px 16px 48px; }
+  h1 { font-size:22px; margin:0 0 4px; }
+  .sub { color:var(--ink-2); font-size:14px; margin:0 0 28px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; max-width:1000px; }
+  .card { background:var(--paper); border:1px solid var(--line); border-radius:18px; padding:18px; }
+  /* 安卓自适应图标：画布 108，桌面只露出中间 72，所以图片放大 1.5 倍再裁 */
+  .ic { position:relative; overflow:hidden; display:block; width:48px; height:48px; }
+  .ic img { position:absolute; width:150%; height:150%; left:-25%; top:-25%; max-width:none; }
+  .ic.big { width:100%; max-width:180px; height:auto; aspect-ratio:1; margin:0 auto 12px; border-radius:28%; box-shadow:0 8px 24px rgba(46,58,92,.10); }
+  h2 { font-size:16px; margin:2px 0 4px; }
+  p { font-size:13px; line-height:1.6; color:var(--ink-2); margin:0 0 12px; }
+  .masks { display:flex; gap:12px; align-items:center; }
+  .circle { border-radius:50%; } .squircle { border-radius:32%; }
+  .tiny { width:30px; height:30px; }
+  h3 { font-size:15px; margin:36px 0 12px; }
+  .phones { display:flex; flex-wrap:wrap; gap:16px; }
+  .phone { border-radius:22px; padding:22px 18px; display:grid; grid-template-columns:repeat(4,60px); gap:18px 14px; }
+  .light { background:linear-gradient(160deg,#dfe9f2,#f2ece0); }
+  .dark { background:linear-gradient(160deg,#1d2335,#2c2a38); }
+  .app { text-align:center; font-size:11px; }
+  .light .app { color:#2e3a5c; } .dark .app { color:#e8e9ef; }
+  .app .ic { width:52px; height:52px; border-radius:50%; margin:0 auto 5px; }
+</style>
+</head>
+<body>
+  <h1>校园后勤 · 一页纸 · 荧光笔</h1>
+  <p class="sub">同一张划了重点的纸：蜜桃粉荧光笔放在两种底色上，再和柠檬黄对比。</p>
+  <div class="grid" id="grid"></div>
+  <h3>放到桌面上的样子（圆形裁切，亮 / 暗壁纸）</h3>
+  <div class="phones">
+    <div class="phone light" id="light"></div>
+    <div class="phone dark" id="dark"></div>
+  </div>
+<script>
+  const ways = [
+    ['icon-v4-page-peach-white.svg', '白底 · 粉笔', '近白底 + 蜜桃粉荧光笔。底色退到最后，粉色那道更跳。'],
+    ['icon-v4-page-peach.svg', '蓝底 · 粉笔', '淡蓝底 + 蜜桃粉荧光笔。粉和蓝一冷一暖，更柔和、更甜一点。'],
+    ['icon-v4-page-lemon.svg', '柠檬 · 黄笔', '近白底 + 柠檬黄荧光笔。更亮、更像真的荧光笔。'],
+  ];
+  const ic = (k, cls = '') => `<span class="ic ${cls}"><img src="${k}" alt=""></span>`;
+  document.getElementById('grid').innerHTML = ways.map(([k, name, desc]) => `
+    <div class="card">${ic(k, 'big')}<h2>${name}</h2><p>${desc}</p>
+      <div class="masks">${ic(k, 'circle')}${ic(k, 'squircle')}${ic(k, 'squircle tiny')}</div></div>`).join('');
+  const apps = ways.map(([k, name]) => `<div class="app">${ic(k)}${name.split(" · ")[0]}</div>`).join('');
+  document.getElementById('light').innerHTML = apps;
+  document.getElementById('dark').innerHTML = apps;
+</script>
+</body>
+</html>

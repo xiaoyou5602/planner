@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108">
+  <defs>
+    <filter id="hand" filterUnits="userSpaceOnUse" x="-10" y="-10" width="128" height="128">
+      <feTurbulence type="fractalNoise" baseFrequency="0.028" numOctaves="1" seed="4" result="noise"/>
+      <feGaussianBlur in="noise" stdDeviation="1.2" result="smooth"/>
+      <feDisplacementMap in="SourceGraphic" in2="smooth" scale="4" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="wash" filterUnits="userSpaceOnUse" x="-10" y="-10" width="128" height="128">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="9"/>
+      <feDisplacementMap in="SourceGraphic" scale="4" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+  <rect width="108" height="108" fill="#e6f8f0"/>
+  <g transform="translate(54 55) scale(.86) translate(-54 -55)">
+  <path d="M46.5 53 c4-3.5 10.5-3.8 15.5-1.2 c2.5 3 1.2 7.8-.6 10.6 c-4.2 2.8-9.6 2.2-13.6.2 c-2.6-2.6-2.8-6.4-1.3-9.6 z" fill="#7fd8b6" opacity=".85" filter="url(#wash)" transform="rotate(-8 54 57)"/>
+  <g fill="none" stroke="#2e3a5c" stroke-linecap="round" stroke-linejoin="round" filter="url(#hand)">
+    <path d="M37.5 33.5 C49 31.8 62 31.2 72.5 33 C73.6 47 74.2 62 73 76.5 C61 78 48 77.6 36 75.8 C35.2 62 35.6 46 34.2 29.8" stroke-width="2.3"/>
+    <path d="M42 41.5 q7-1.6 13.5 .4" stroke-width="1.9"/>
+  </g>
+  </g>
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108">
+  <defs>
+    <filter id="hand" filterUnits="userSpaceOnUse" x="-10" y="-10" width="128" height="128">
+      <feTurbulence type="fractalNoise" baseFrequency="0.028" numOctaves="1" seed="6"/>
+      <feDisplacementMap in="SourceGraphic" scale="3.2" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="wash" filterUnits="userSpaceOnUse" x="-10" y="-10" width="128" height="128">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="9"/>
+      <feDisplacementMap in="SourceGraphic" scale="4" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+  <rect width="108" height="108" fill="#e8f3ec"/>
+  <path d="M57 51 C59 44 65 40.5 72 41 C71 48 65 52.5 58 53.5 Z" fill="#bfe2cf" filter="url(#wash)"/>
+  <g fill="none" stroke="#2e3a5c" stroke-linecap="round" stroke-linejoin="round" filter="url(#hand)">
+    <path d="M54.5 78 C53.4 69 54.8 60 54 50.5" stroke-width="2.3"/>
+    <path d="M54.3 61 C46 61.5 40.5 56 39.5 47.5 C47.5 47 53 52 54.6 60" stroke-width="2"/>
+    <path d="M54 53.5 C55.5 44 62.5 38.5 72.5 38.8 C72 48.5 64.5 54.5 54.8 55" stroke-width="2"/>
+    <path d="M43 79 q11-1.8 23.5 .2" stroke-width="2"/>
+  </g>
+</svg>

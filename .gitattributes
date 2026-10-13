@@ -1,0 +1,2 @@
+# Unix 版 gradlew 必须保持 LF，否则 Bash 里 ./gradlew 跑不起来
+android/gradlew text eol=lf

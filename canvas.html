@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>界面画布</title>
+    <!--
+      开发用画布：像 Figma 一样把多个界面摆开看。只在 npm run dev 时能打开（/canvas.html），
+      不进打包、不进手机安装包。每个手机框是一个独立的真 App（iframe），改代码后一起热更新。
+      要加界面：往下面 GROUPS 里加一行，网址参数见 src/nav.jsx 的 initialNav。
+    -->
+    <style>
+      :root {
+        --bg: #ecebe6;
+        --ink: #2e3a5c;
+        --ink-2: #6b7593;
+        --frame: #2e3a5c;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Inter, 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+      }
+      header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 8px 16px;
+        padding: 20px 32px 0;
+      }
+      h1 {
+        margin: 0;
+        font-size: 18px;
+      }
+      header span {
+        color: var(--ink-2);
+        font-size: 13px;
+      }
+      header label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-left: auto;
+        color: var(--ink-2);
+        font-size: 13px;
+      }
+      #zoomVal {
+        width: 3em;
+      }
+      .seg {
+        display: flex;
+        gap: 4px;
+        padding: 3px;
+        border: 1.2px solid var(--ink);
+        border-radius: 999px;
+        background: #fff;
+      }
+      .seg button {
+        padding: 5px 14px;
+        border: 0;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--ink-2);
+        font: inherit;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .seg button.on {
+        background: oklch(0.96 0.05 100);
+        color: var(--ink);
+      }
+      #board {
+        padding: 8px 32px 48px;
+      }
+      #board h2 {
+        margin: 32px 0 16px;
+        font-size: 22px;
+      }
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+      }
+      figure {
+        margin: 0;
+      }
+      figcaption {
+        margin-bottom: 10px;
+        font-size: 13px;
+        font-weight: 600;
+      }
+      figcaption a {
+        margin-left: 8px;
+        color: var(--ink-2);
+        font-weight: 400;
+        text-decoration: none;
+      }
+      .phone {
+        width: 375px;
+        height: 812px;
+        border: 6px solid var(--frame);
+        border-radius: 40px;
+        overflow: hidden;
+        background: #fffefb;
+        box-shadow: 0 12px 32px rgba(46, 58, 92, 0.18);
+      }
+      .phone iframe {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>界面画布</h1>
+      <span>每个框都是真的 App，可以点；改代码后会一起刷新</span>
+      <div class="seg" id="data" title="假数据存在单独的地方，改了会留住，不会碰你本机存的真数据">
+        <button data-demo="1">假数据</button>
+        <button data-demo="0">空数据</button>
+      </div>
+      <button id="resetDemo" class="seg" style="padding: 5px 14px; font-size: 13px; color: var(--ink-2); cursor: pointer">恢复样例</button>
+      <label>缩放 <input id="zoom" type="range" min="25" max="100" step="5" value="50" /> <b id="zoomVal">50%</b></label>
+    </header>
+    <main id="board"></main>
+    <script>
+      // 每组一排；[标题, 网址参数]，参数含义见 src/nav.jsx 的 initialNav
+      const GROUPS = [
+        ['主界面', [
+          ['首页', '?tab=home'],
+          ['课表', '?tab=sched'],
+          ['我的', '?tab=me'],
+        ]],
+        ['课程与设置', [
+          ['添加课程', '?tab=sched&page=course'],
+          ['上课时间', '?page=time'],
+          ['编辑资料', '?tab=me&page=edit'],
+        ]],
+        ['导入课表', [
+          ['从 App 或教务导入', '?tab=me&page=schoolImport'],
+          ['导入 PDF 课表', '?tab=me&page=pdfImport'],
+        ]],
+        ['校园服务', [
+          ['洗澡', '?page=bath'],
+          ['电费', '?page=elec'],
+          ['电费明细', '?page=elec,elecLog'],
+          ['校园卡', '?page=card'],
+          ['充值', '?page=card,topup'],
+        ]],
+      ]
+      const board = document.getElementById('board')
+      // 直接双击 / 在文件预览里打开时没有开发服务器，App 跑不起来，手机框会全空；改成提示
+      if (location.protocol === 'file:') {
+        board.innerHTML = '<p>这个页面要通过开发服务器打开：先在 mobile-app 里运行 <code>npm run dev</code>，再在浏览器打开它给的地址后面加 <code>/canvas.html</code>（例如 http://localhost:5173/canvas.html）。</p>'
+        GROUPS.length = 0
+      }
+
+      // 假数据：每个框网址带 demo=1，第一次打开是 src/lib/demo.js 的样例，之后在框里改的会存下来（和真数据分开存）；空数据：用本机存的真数据
+      let demo = '1'
+      try {
+        demo = localStorage.getItem('canvas-demo') ?? demo
+      } catch {}
+      const seg = document.getElementById('data')
+
+      function render() {
+        board.replaceChildren()
+        for (const b of seg.children) b.classList.toggle('on', b.dataset.demo === demo)
+        for (const [group, screens] of GROUPS) {
+          const h = document.createElement('h2')
+          h.textContent = group
+          const row = document.createElement('div')
+          row.className = 'row'
+          for (const [title, query] of screens) {
+            const url = `/index.html${query}${demo === '1' ? '&demo=1' : ''}`
+            const fig = document.createElement('figure')
+            fig.innerHTML = `<figcaption>${title}<a href="${url}" target="_blank">单独打开 ↗</a></figcaption><div class="phone"><iframe src="${url}" title="${title}"></iframe></div>`
+            row.append(fig)
+          }
+          board.append(h, row)
+        }
+      }
+      seg.addEventListener('click', e => {
+        const v = e.target.dataset?.demo
+        if (!v || v === demo || !GROUPS.length) return
+        demo = v
+        try {
+          localStorage.setItem('canvas-demo', demo)
+        } catch {}
+        render()
+      })
+      // 恢复样例：删掉存下来的假数据（key 见 src/lib/store.js），所有框重新打开就是 demo.js 的样例；真数据不受影响
+      document.getElementById('resetDemo').addEventListener('click', () => {
+        if (!confirm('把假数据恢复成样例？你在假数据里改过的内容会丢掉，真数据不受影响。')) return
+        try {
+          localStorage.removeItem('CapacitorStorage.campus.demo.v1')
+        } catch {}
+        if (GROUPS.length) render()
+      })
+      if (GROUPS.length) render()
+
+      // 缩放：整块画布一起缩小，像 Figma 拉远看全局；记住上次的比例（读不到就用默认 50%）
+      const zoom = document.getElementById('zoom')
+      const zoomVal = document.getElementById('zoomVal')
+      function applyZoom() {
+        board.style.zoom = zoom.value / 100
+        zoomVal.textContent = `${zoom.value}%`
+        try {
+          localStorage.setItem('canvas-zoom', zoom.value)
+        } catch {}
+      }
+      try {
+        zoom.value = localStorage.getItem('canvas-zoom') || zoom.value
+      } catch {}
+      zoom.addEventListener('input', applyZoom)
+      applyZoom()
+    </script>
+  </body>
+</html>

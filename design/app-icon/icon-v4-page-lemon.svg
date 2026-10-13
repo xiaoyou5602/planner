@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108">
+  <defs>
+    <filter id="hand" filterUnits="userSpaceOnUse" x="-10" y="-10" width="128" height="128">
+      <feTurbulence type="fractalNoise" baseFrequency="0.028" numOctaves="1" seed="4" result="noise"/>
+      <feGaussianBlur in="noise" stdDeviation="1.2" result="smooth"/>
+      <feDisplacementMap in="SourceGraphic" in2="smooth" scale="4" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="wash" filterUnits="userSpaceOnUse" x="-10" y="-10" width="128" height="128">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="9"/>
+      <feDisplacementMap in="SourceGraphic" scale="4" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+  <rect width="108" height="108" fill="#f6fbff"/>
+  <g transform="translate(54 55) scale(.86) translate(-54 -55)">
+  <!-- 荧光笔：斜切笔头，起笔重、收笔轻，压在第二行字下面 -->
+  <g id="highlighter" filter="url(#wash)" transform="rotate(-3.5 54 53)">
+    <path d="M39.6 50 q7.5-1.1 15-1 q7-.1 12.6 .5 l.9 6.6 q-6.8-.9-13.6-.6 q-7.2.3-13.9 1.4 Z" fill="#ffe14d" opacity=".72"/>
+    <path d="M39.6 50 q2-.3 3.8-.4 l.5 6.9 q-1.9.2-3.3.4 Z" fill="#ffd21f" opacity=".28"/>
+  </g>
+  <g fill="none" stroke="#2e3a5c" stroke-linecap="round" stroke-linejoin="round" filter="url(#hand)">
+    <path d="M37.5 33.5 C49 31.8 62 31.2 72.5 33 C73.6 47 74.2 62 73 76.5 C61 78 48 77.6 36 75.8 C35.2 62 35.6 46 34.2 29.8" stroke-width="2.3"/>
+    <path d="M42 41.5 q7-1.6 13.5 .4" stroke-width="1.9"/>
+    <path d="M42.5 51.5 c6-1.1 14-1.3 22.5-.3" stroke-width="1.7"/>
+    <path d="M42.5 60.5 c5-.7 10.5-.8 15.5 .1" stroke-width="1.7"/>
+  </g>
+  </g>
+</svg>

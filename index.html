@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+    <meta name="theme-color" content="#FFFEFB" />
+    <title>校园后勤</title>
+    <!--
+      开屏由安卓系统开屏负责：静止小本子一直留到首页画好（见 MainActivity / src/main.jsx），不播动画、不淡出。
+      下面 #root 里放一个和系统开屏同大同位的静态小本子，只在系统开屏超时撤掉、首页还没画出来时露出来；
+      React 首次渲染会直接把它替换掉。图标照抄 design/app-icon/icon-v4-page-lemon.svg 去掉底色（荧光笔保留、静止不动），改图标时两边一起改。
+    -->
+    <style>
+      #boot {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #fffefb;
+      }
+      #boot svg {
+        flex: none;
+        width: 288px;
+        height: 288px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div id="boot" aria-hidden="true">
+        <svg viewBox="0 0 108 108">
+          <defs>
+            <filter id="boot-hand" filterUnits="userSpaceOnUse" x="-10" y="-10" width="128" height="128">
+              <feTurbulence type="fractalNoise" baseFrequency="0.028" numOctaves="1" seed="4" result="noise"/>
+              <feGaussianBlur in="noise" stdDeviation="1.2" result="smooth"/>
+              <feDisplacementMap in="SourceGraphic" in2="smooth" scale="4" xChannelSelector="R" yChannelSelector="G"/>
+            </filter>
+            <filter id="boot-wash" filterUnits="userSpaceOnUse" x="-10" y="-10" width="128" height="128">
+              <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="9"/>
+              <feDisplacementMap in="SourceGraphic" scale="4" xChannelSelector="R" yChannelSelector="G"/>
+            </filter>
+          </defs>
+          <g transform="translate(54 55) scale(.86) translate(-54 -55)">
+            <g filter="url(#boot-wash)" transform="rotate(-3.5 54 53)">
+              <path d="M39.6 50 q7.5-1.1 15-1 q7-.1 12.6 .5 l.9 6.6 q-6.8-.9-13.6-.6 q-7.2.3-13.9 1.4 Z" fill="#ffe14d" opacity=".72"/>
+              <path d="M39.6 50 q2-.3 3.8-.4 l.5 6.9 q-1.9.2-3.3.4 Z" fill="#ffd21f" opacity=".28"/>
+            </g>
+            <g fill="none" stroke="#2e3a5c" stroke-linecap="round" stroke-linejoin="round" filter="url(#boot-hand)">
+              <path d="M37.5 33.5 C49 31.8 62 31.2 72.5 33 C73.6 47 74.2 62 73 76.5 C61 78 48 77.6 36 75.8 C35.2 62 35.6 46 34.2 29.8" stroke-width="2.3"/>
+              <path d="M42 41.5 q7-1.6 13.5 .4" stroke-width="1.9"/>
+              <path d="M42.5 51.5 c6-1.1 14-1.3 22.5-.3" stroke-width="1.7"/>
+              <path d="M42.5 60.5 c5-.7 10.5-.8 15.5 .1" stroke-width="1.7"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

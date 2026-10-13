@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108">
+  <defs>
+    <filter id="rough" filterUnits="userSpaceOnUse" x="-10" y="-10" width="128" height="128">
+      <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="3"/>
+      <feDisplacementMap in="SourceGraphic" scale="1.6" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="rough2" filterUnits="userSpaceOnUse" x="-10" y="-10" width="128" height="128">
+      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="11"/>
+      <feDisplacementMap in="SourceGraphic" scale="2.2" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="fill" filterUnits="userSpaceOnUse" x="-10" y="-10" width="128" height="128">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="7"/>
+      <feDisplacementMap in="SourceGraphic" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+  <rect width="108" height="108" fill="#fbf5e2"/>
+  <g transform="translate(54 55) scale(.9) translate(-54 -55)">
+  <g transform="rotate(-5 54 56)">
+    <g filter="url(#fill)" transform="translate(1.2 1)">
+      <rect x="33" y="30" width="42" height="50" rx="3" fill="#fffefb"/>
+      <rect x="37" y="45" width="11" height="11" rx="2" fill="#cdeadd"/>
+      <rect x="50" y="58" width="11" height="12" rx="2" fill="#f6d4d6"/>
+      <rect x="63" y="45" width="8" height="18" rx="2" fill="#d2e5f6"/>
+    </g>
+    <g fill="none" stroke="#2e3a5c" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="33" y="30" width="42" height="50" rx="3" stroke-width="2.6" filter="url(#rough)"/>
+      <rect x="33" y="30" width="42" height="50" rx="3" stroke-width="1" opacity=".35" filter="url(#rough2)" transform="translate(.8 -.7)"/>
+      <path d="M36 40.5 H72" stroke-width="2" filter="url(#rough)"/>
+      <path d="M40 50 h5 M40 53 h3 M53 63 h5 M53 66 h3 M66 50 v8" stroke-width="1.5" opacity=".75" filter="url(#rough)"/>
+    </g>
+  </g>
+  </g>
+  <path d="M43 25 l1.3 1.5 -1.1 1.6 1.2 1.5 -1 1.7 21.5 2.8 -1.2-1.6 1.1-1.6 -1.2-1.5 1-1.7 Z" fill="#f2c4c8" opacity=".85" filter="url(#fill)"/>
+  <g fill="none" stroke="#2e3a5c" stroke-width="1.7" stroke-linecap="round" filter="url(#rough)">
+    <path d="M80 70 v6 M77 73 h6"/>
+    <path d="M27 38 v4 M25 40 h4" opacity=".6"/>
+  </g>
+</svg>
