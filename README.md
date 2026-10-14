@@ -12,6 +12,9 @@
 ![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
 ![本地优先](https://img.shields.io/badge/数据-只存本机-F5C542)
 
+<br>
+<img src="./assets/main-ui.svg" alt="Planner 主界面预览" width="820" />
+
 </div>
 
 ---
