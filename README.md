@@ -13,8 +13,6 @@
 ![本地优先](https://img.shields.io/badge/数据-只存本机-F5C542)
 
 <br>
-<img width="248" height="497" alt="9867e525-4dfe-4ba5-9b80-a0a732e6e84e" src="https://github.com/user-attachments/assets/71a84c63-bd2d-49cf-b4f2-9f9708b50cf9" />
-
 </div>
 
 ---
