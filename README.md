@@ -5,7 +5,7 @@
 **一本装进手机里的手账课表。**
 
 翻开就知道下一节在哪，导入只要一下，数据永远只在你自己手里。
-<img width="248" height="497" alt="9867e525-4dfe-4ba5-9b80-a0a732e6e84e" src="https://github.com/user-attachments/assets/6b9ceb9a-b5bb-4c39-a506-db089229e6b5" />
+
 ![Android](https://img.shields.io/badge/Android-7.0%2B-3DDC84?logo=android&logoColor=white)
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
 ![Capacitor](https://img.shields.io/badge/Capacitor-8-119EFF?logo=capacitor&logoColor=white)
@@ -13,7 +13,7 @@
 ![本地优先](https://img.shields.io/badge/数据-只存本机-F5C542)
 
 <br>
-<img src="./assets/main-ui.svg" alt="Planner 主界面预览" width="916" />
+<img width="248" height="497" alt="9867e525-4dfe-4ba5-9b80-a0a732e6e84e" src="https://github.com/user-attachments/assets/6b9ceb9a-b5bb-4c39-a506-db089229e6b5" />
 
 </div>
 
