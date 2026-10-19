@@ -13,9 +13,7 @@
 ![本地优先](https://img.shields.io/badge/数据-只存本机-F5C542)
 
 <br>
-<img width="683" height="459" alt="3f8044e8-212c-4ee3-b5ac-c10fe8b33403" src="https://github.com/user-attachments/assets/0e386106-f0a8-40bc-95a1-e286576f02b6" />
-<img width="682" height="344" alt="05ef83eb-63f7-4839-928f-9cf9c31bd5c8" src="https://github.com/user-attachments/assets/57a601bf-e397-4eff-9791-5603a724e148" />
-
+<img width="248" height="497" alt="9867e525-4dfe-4ba5-9b80-a0a732e6e84e" src="https://github.com/user-attachments/assets/71a84c63-bd2d-49cf-b4f2-9f9708b50cf9" />
 
 </div>
 
